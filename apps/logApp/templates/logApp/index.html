@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login and Registration</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+	{% if messages %}
+	<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+	</ul>
+	{% endif %}
+
+
+	<form action='/register' method='POST'>
+		{% csrf_token %}
+	  	<div class="form-group">
+		  	<h1>Register a new user</h1>
+		    <input type="text" class="form-control" name="fname" placeholder="First Name">
+		    <br>
+		    <input type="text" class="form-control" name="lname" placeholder="Last Name">
+		    <br>
+		    <input type="text" class="form-control" name="email" placeholder="E-mail">
+		    <br>
+			<input type="password" class="form-control" name="pw" placeholder="Password"> 
+			<br>   
+			<input type="password" class="form-control" name="confPW" placeholder="Confirm Password">
+			<br>
+			<input type="submit" class="btn btn-primary" value="Register!">
+		</div>
+	</form>
+<hr>
+	<h1>Sign in existing user</h1>
+	<form action='/signin' method='POST'>
+		{% csrf_token %}
+  		<div class="form-row">
+    		<div class="col">
+      			<input type="text" class="form-control" name="email" placeholder="Email">
+    		</div>
+    		<div class="col">
+      			<input type="password" class="form-control" name="pw" placeholder="Password">
+    		</div>
+    		<div class="col">
+      			<input type="submit" class="btn btn-primary" value="Signin">
+    		</div>
+  		</div>
+	</form>
+
+</body>
+</html>
